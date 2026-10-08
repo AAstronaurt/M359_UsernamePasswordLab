@@ -6,7 +6,7 @@ public class UserInfoLab {
         // Create a Scanner for keyboard input
         Scanner scan = new Scanner(System.in);
         // Ask the user to enter their first and last name and pass these
-        System.out.print("Enter your first name");
+        System.out.println("Enter your first name");
         String userFirstName = scan.next();
         System.out.println("Enter your last name");
         String userLastName = scan.next();
@@ -43,16 +43,44 @@ public class UserInfoLab {
         if(firstName.length() <= 2){
             result += firstName;
         }
-        else if(lastName.length() <= 2){
+        else{
+            result += firstName.substring(0, 3);
+        }
+
+        if(lastName.length() <= 2){
             result += lastName;
         }
         else{
-            result += firstName.charAt(2) + " " + lastName.charAt(2);
+            result += lastName.substring(0, 3);
         }
         return result;
     }
     public static boolean validatePassword(String password) {
         // Fill in this method and return true/false if the password is valid
+        // check if the length is greater than 8
+        if(password.length() >= 8){
+            String allUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for(int i = 0; i < password.length(); i++){
+                // check if one of the letters is a capital letter
+                if(password.substring(i).equals(allUpperCase.substring(i))){
+                    // so um this probably dont work... but we want to check if the current letter is a capital letter
+                    // oh and you can maybe have a variable that is equal to something that you check in contains digit if statement
+                    // if(allUpperCaseLetter.indexOf(letter) > 0)
+                }
+                else{
+                    System.out.println("Password doesn't contain a capital letter");
+                    return false;
+                }
+
+                if(containsDigit(password)){
+                    return true;
+                }
+            }
+        }
+        else{
+            System.out.println("Password is less than 8 characters long");
+            return false;
+        }
         return true;
     }
     public static String maskCreditCard(String creditCardNumber) {
